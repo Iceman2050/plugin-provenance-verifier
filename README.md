@@ -26,6 +26,37 @@ python -m provenance.cli diff --plugins-dir ~/.claude/plugins --snapshot-file ~/
 
 `scan` also warns on sideloaded plugins and auto-update-ON plugins.
 
+## See it run
+
+Real output, captured 2026-11-01 against a two-plugin demo directory built for
+this README (one plugin with auto-update on, one sideloaded from a random URL):
+
+```
+== alpha-tool ==
+  name:        alpha-tool
+  version:     1.0.0
+  origin:      sideloaded (official-directory, declared)
+  auto_update: True
+  mcp_servers: alpha-mcp
+  files:       1
+  WARNING: SIDELOADED: not from the official plugin directory
+  WARNING: AUTO-UPDATE ON: bundled code can change silently
+== beta-pack ==
+  name:        beta-pack
+  version:     0.9.1
+  origin:      sideloaded (https://random-site.example/plugins, declared)
+  auto_update: False
+  mcp_servers: (none)
+  files:       1
+  WARNING: SIDELOADED: not from the official plugin directory
+```
+
+The full suite (25 tests) passes: `python -m pytest -q`.
+
+**Plugins are one surface; your website is the other.** When you want the
+site itself checked — exposed files, leaked keys, open doors — the fleet's
+free front door is [BreachHunter](https://breachhunter.getingeniousai.com).
+
 ## Tests
 
 ```bash
@@ -41,16 +72,20 @@ python -m pytest -v
 - It does not block updates or uninstall plugins; it is a read-only audit, not a guardrail.
 - If a plugin rewrites its own manifest to hide a change, only the file-hash inventory (which ignores manifests) and version-diff logic catch it.
 
+---
+
 ## Built by Ingenious AI
 
-[DisclosureGuard](https://wa.me/5016691053?text=Hi%20Ingenious%20AI!%20I%20want%20early%20access%20to%20DisclosureGuard.)
-[ModelMinder](https://wa.me/5016691053?text=Hi%20Ingenious%20AI!%20I%20want%20early%20access%20to%20ModelMinder.)
-[TermsWatch](https://wa.me/5016691053?text=Hi%20Ingenious%20AI!%20I%20want%20early%20access%20to%20TermsWatch.)
-[Vibe-Code Audit](https://wa.me/5016691053?text=Hi%20Ingenious%20AI!%20I%20want%20early%20access%20to%20Vibe-Code%20Audit.)
-[Rogue-Agent Defense](https://wa.me/5016691053?text=Hi%20Ingenious%20AI!%20I%20want%20early%20access%20to%20Rogue-Agent%20Defense.)
-[BreachHunter](https://wa.me/5016691053?text=Hi%20Ingenious%20AI!%20I%20want%20early%20access%20to%20BreachHunter.)
-[ChatBreaker](https://wa.me/5016691053?text=Hi%20Ingenious%20AI!%20I%20want%20early%20access%20to%20ChatBreaker.)
-[Agent Flight Recorder](https://wa.me/5016691053?text=Hi%20Ingenious%20AI!%20I%20want%20early%20access%20to%20Agent%20Flight%20Recorder.)
-[Agent Auth Gateway](https://wa.me/5016691053?text=Hi%20Ingenious%20AI!%20I%20want%20early%20access%20to%20Agent%20Auth%20Gateway.)
-[DomainGuard](https://wa.me/5016691053?text=Hi%20Ingenious%20AI!%20I%20want%20early%20access%20to%20DomainGuard.)
-[ContentCraft AI](https://wa.me/5016691053?text=Hi%20Ingenious%20AI!%20I%20want%20early%20access%20to%20ContentCraft%20AI.)
+- [DisclosureGuard](https://disclosureguard.getingeniousai.com) — AI disclosure compliance
+- [ModelMinder](https://modelminder.getingeniousai.com) — model deprecation radar
+- [TermsWatch](https://termswatch.getingeniousai.com) — AI vendor terms watcher
+- [Vibe-Code Audit](https://vibe-audit.getingeniousai.com) — vibe-coded app security audit
+- [Rogue-Agent Defense](https://rogue-defense.getingeniousai.com) — rogue agent protection
+- [BreachHunter](https://breachhunter.getingeniousai.com) — breach detection
+- [ChatBreaker](https://chatbreaker.getingeniousai.com) — chatbot jailbreak testing
+- [Agent Flight Recorder](https://flightrecorder.getingeniousai.com) — hash-chained agent logging
+- [Agent Auth Gateway](https://authgateway.getingeniousai.com) — agent budget caps & kill switch
+- [DomainGuard](https://domainguard.getingeniousai.com) — domain-impersonation defense
+- [ContentCraft AI](https://contentcraft.getingeniousai.com) — AI content studio
+
+All 11 platforms, one suite deal: [Security Suite](https://ingeniousai-security-checks-mirror-0e97b6.gitlab.io/security-suite.html)
